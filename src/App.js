@@ -1,24 +1,60 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
+import Editor from './Editor';
+
+function Landing() {
+  const [roomId, setRoomId] = useState('');
+  const [name, setName] = useState('');
+  const navigate = useNavigate();
+
+  function createRoom() {
+    const newRoomId = Math.random().toString(36).substring(2, 8).toUpperCase();
+    setRoomId(newRoomId);
+  }
+
+  function joinRoom() {
+    if (name && roomId) {
+      navigate('/editor');
+    }
+  }
+
+  return (
+    <div className="container">
+      <h1>CodeSync</h1>
+      <p>Real-time collaborative code editor</p>
+
+      <div className="card">
+        <input
+          type="text"
+          placeholder="Your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Room ID"
+          value={roomId}
+          onChange={(e) => setRoomId(e.target.value)}
+        />
+        <button onClick={joinRoom}>Join Room</button>
+        <span className="divider">— or —</span>
+        <button className="btn-secondary" onClick={createRoom}>
+          Create New Room
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/editor" element={<Editor />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
