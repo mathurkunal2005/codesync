@@ -29,7 +29,8 @@ io.on('connection', (socket) => {
     if (!roomMembers[roomId]) {
       roomMembers[roomId] = [];
     }
-    roomMembers[roomId].push({ id: socket.id, name });
+    const color = `hsl(${Math.floor(Math.random() * 360)}, 70%, 60%)`;
+    roomMembers[roomId].push({ id: socket.id, name, color });
 
     if (roomCode[roomId]) {
       socket.emit('code-update', roomCode[roomId]);

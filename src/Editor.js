@@ -132,7 +132,7 @@ function EditorPage() {
           <h3>Members</h3>
           {members.map((member) => (
             <div className="member" key={member.id}>
-              <span className="dot"></span>
+               <span className="dot" style={{ backgroundColor: member.color }}></span>
               <span>{member.name}</span>
             </div>
           ))}
