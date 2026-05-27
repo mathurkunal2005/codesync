@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Editor from '@monaco-editor/react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import './Editor.css';
 
@@ -24,6 +24,7 @@ function EditorPage() {
   const [members, setMembers] = useState([]);
   const location = useLocation();
   const { name, roomId } = location.state || {};
+  const navigate = useNavigate();
   const isRemoteUpdate = useRef(false);
 
   useEffect(() => {
@@ -55,6 +56,16 @@ function EditorPage() {
     socket.emit('code-change', { roomId, code: newCode });
   }
 
+  function leaveRoom() {
+    socket.disconnect();
+    navigate('/');
+  }
+
+  function copyRoomId() {
+    navigator.clipboard.writeText(roomId);
+    alert('Room ID copied!');
+  }
+
   return (
     <div className="editor-container">
       <div className="editor-header">
@@ -72,18 +83,19 @@ function EditorPage() {
             ))}
           </select>
           <span className="room-info">Room: {roomId}</span>
-          <button className="leave-btn">Leave Room</button>
+          <button className="copy-btn" onClick={copyRoomId}>Copy ID</button>
+          <button className="leave-btn" onClick={leaveRoom}>Leave Room</button>
         </div>
       </div>
 
       <div className="editor-body">
-        <div className="sidebar">s
+        <div className="sidebar">
           <h3>Members</h3>
           {members.map((member) => (
-            <div className="member">
-            <span className="dot"></span>
-            <span>{member.name}</span>
-          </div>
+            <div className="member" key={member.id}>
+              <span className="dot"></span>
+              <span>{member.name}</span>
+            </div>
           ))}
         </div>
 

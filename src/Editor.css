@@ -134,3 +134,20 @@
 .language-select:hover {
   border-color: #c9a84c;
 }
+
+.copy-btn {
+  padding: 6px 12px;
+  background-color: transparent;
+  border: 1px solid #2a2a2a;
+  color: #666;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.copy-btn:hover {
+  border-color: #c9a84c;
+  color: #c9a84c;
+}
