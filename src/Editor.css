@@ -151,3 +151,63 @@
   border-color: #c9a84c;
   color: #c9a84c;
 }
+
+.run-btn {
+  padding: 6px 16px;
+  background-color: #c9a84c;
+  border: none;
+  color: #080808;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.run-btn:hover {
+  background-color: #b8973d;
+}
+
+.run-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.code-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.editor-section {
+  flex: 1;
+  min-height: 0;
+}
+
+.output-section {
+  height: 200px;
+  background-color: #0f0f0f;
+  border-top: 1px solid #2a2a2a;
+  display: flex;
+  flex-direction: column;
+}
+
+.output-header {
+  padding: 8px 16px;
+  color: #c9a84c;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.output-content {
+  padding: 16px;
+  color: #ccc;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  overflow-y: auto;
+  flex: 1;
+  white-space: pre-wrap;
+}
