@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# CodeSync ⚡
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A real-time collaborative code editor where multiple users can join a shared room and code simultaneously — like Google Docs, but for code.
 
-## Available Scripts
+🔗 **Live Demo:** [codesync-livid.vercel.app](https://codesync-livid.vercel.app)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🔴 **Real-time collaboration** — Multiple users can code together simultaneously
+- 🎨 **Unique user colors** — Every collaborator gets a distinct color in the members list
+- 💻 **Monaco Editor** — The same editor that powers VS Code
+- 🚀 **Run code** — Execute code directly in the browser using Judge0 API
+- 🔄 **Synced output** — Code execution results visible to all room members
+- 🌐 **7 languages** — JavaScript, Python, C++, Java, TypeScript, HTML, CSS
+- 📋 **Copy room link** — Share a link that auto-fills the room ID
+- ⬇️ **Download code** — Save your code as a file with the correct extension
+- 🦇 **Batman themed** — Because why not
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Frontend | Backend | Deployment |
+|---|---|---|
+| React.js | Node.js | Vercel |
+| Monaco Editor | Express.js | Render |
+| Socket.io Client | Socket.io | GitHub |
+| React Router | Judge0 API | |
+| React Hot Toast | | |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How It Works
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+User creates a room → gets a unique Room ID
+Share the room link with collaborators
+Everyone joins the same room
+Code syncs in real-time via Socket.io
+Run code → output visible to all members
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Run Locally
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# Clone the repo
+git clone https://github.com/mathurkunal2005/codesync.git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Install frontend dependencies
+cd codesync
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Install backend dependencies
+cd server
+npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Start backend
+node index.js
 
-## Learn More
+# Start frontend (new terminal)
+cd ..
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Architecture
 
-### Code Splitting
+```
+Frontend (React)  ←→  Backend (Node.js + Socket.io)
+     ↓                          ↓
+  Vercel                     Render
+  (UI hosting)           (Server hosting)
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Built by [Kunal Mathur](https://github.com/mathurkunal2005)
