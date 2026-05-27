@@ -14,7 +14,7 @@ const LANGUAGES = [
   'css',
 ];
 
-const socket = io('http://localhost:5001', {
+const socket = io('https://codesync-tigk.onrender.com', {
   autoConnect: false
 });
 
