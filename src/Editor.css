@@ -118,3 +118,19 @@
 .code-area textarea::placeholder {
   color: #333;
 }
+
+.language-select {
+  padding: 6px 12px;
+  background-color: #1a1a1a;
+  color: #c9a84c;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  letter-spacing: 1px;
+}
+
+.language-select:hover {
+  border-color: #c9a84c;
+}

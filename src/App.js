@@ -14,10 +14,10 @@ function Landing() {
   }
 
   function joinRoom() {
-    if (name && roomId) {
-      navigate('/editor');
-    }
+  if (name && roomId) {
+    navigate('/editor', { state: { name, roomId } });
   }
+}
 
   return (
     <div className="container">
