@@ -111,6 +111,26 @@ function EditorPage() {
 
     setIsRunning(false);
   }
+  function downloadCode() {
+  const extensions = {
+    javascript: 'js',
+    python: 'py',
+    cpp: 'cpp',
+    java: 'java',
+    typescript: 'ts',
+    html: 'html',
+    css: 'css',
+  };
+
+  const blob = new Blob([code], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `code.${extensions[language]}`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast.success('Code downloaded!');
+}
 
   return (
     <div className="editor-container">
@@ -131,6 +151,7 @@ function EditorPage() {
           <span className="room-info">Room: {roomId}</span>
           <button className="copy-btn" onClick={copyRoomId}>Copy ID</button>
           <button className="run-btn" onClick={runCode} disabled={isRunning}>
+          <button className="copy-btn" onClick={downloadCode}>Download</button>
             {isRunning ? 'Running...' : 'Run Code'}
           </button>
           <button className="leave-btn" onClick={leaveRoom}>Leave Room</button>
