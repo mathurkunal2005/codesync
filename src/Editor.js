@@ -70,8 +70,8 @@ function EditorPage() {
 
   function copyRoomId() {
     const roomLink = `${window.location.origin}/?room=${roomId}`;
-    navigator.clipboard.writeText(roomId);
-    alert('Room ID copied!');
+    navigator.clipboard.writeText(roomLink);
+    alert('Room link copied!');
   }
 
   async function runCode() {
