@@ -25,6 +25,7 @@ function EditorPage() {
   const [members, setMembers] = useState([]);
   const [output, setOutput] = useState('');
   const [isRunning, setIsRunning] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
   const location = useLocation();
   const { name, roomId } = location.state || {};
   const navigate = useNavigate();
@@ -32,6 +33,10 @@ function EditorPage() {
 
   useEffect(() => {
     socket.connect();
+
+    socket.on('connect', () => setIsConnected(true));
+    socket.on('disconnect', () => setIsConnected(false));
+
     socket.emit('join-room', { roomId, name });
 
     socket.on('code-update', (newCode) => {
@@ -48,6 +53,8 @@ function EditorPage() {
     });
 
     return () => {
+      socket.off('connect');
+      socket.off('disconnect');
       socket.off('code-update');
       socket.off('members-update');
       socket.off('output-update');
@@ -135,6 +142,11 @@ function EditorPage() {
 
   return (
     <div className="editor-container">
+      {!isConnected && (
+        <div className="connecting-banner">
+          Server is waking up... Summoning the darkness 🦇
+        </div>
+      )}
       <div className="editor-header">
         <h2>CodeSync</h2>
         <div className="header-right">
