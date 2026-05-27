@@ -2,7 +2,7 @@ import { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useSearchParams } from 'react-router-dom';
 import './App.css';
-import Editor from './Editor';
+import EditorPage from './Editor';
 
 function Landing() {
   const [roomId, setRoomId] = useState('');
