@@ -69,6 +69,7 @@ function EditorPage() {
   }
 
   function copyRoomId() {
+    const roomLink = `${window.location.origin}/?room=${roomId}`;
     navigator.clipboard.writeText(roomId);
     alert('Room ID copied!');
   }
@@ -127,7 +128,7 @@ function EditorPage() {
             ))}
           </select>
           <span className="room-info">Room: {roomId}</span>
-          <button className="copy-btn" onClick={copyRoomId}>Copy ID</button>
+          <button className="copy-btn" onClick={copyRoomId}>Copy Link</button>
           <button className="run-btn" onClick={runCode} disabled={isRunning}>
             {isRunning ? 'Running...' : 'Run Code'}
           </button>
