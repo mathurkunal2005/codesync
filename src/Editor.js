@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useState, useEffect, useRef } from 'react';
 import Editor from '@monaco-editor/react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -69,10 +70,10 @@ function EditorPage() {
   }
 
   function copyRoomId() {
-    const roomLink = `${window.location.origin}/?room=${roomId}`;
-    navigator.clipboard.writeText(roomLink);
-    alert('Room link copied!');
-  }
+  const roomLink = `${window.location.origin}/?room=${roomId}`;
+  navigator.clipboard.writeText(roomLink);
+  toast.success('Room link copied!');
+}
 
   async function runCode() {
     setIsRunning(true);

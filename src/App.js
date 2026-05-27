@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useSearchParams } from 'react-router-dom';
 import './App.css';
@@ -58,9 +59,21 @@ useEffect(() => {
 function App() {
   return (
     <BrowserRouter>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: '#1a1a1a',
+            color: '#c9a84c',
+            border: '1px solid #2a2a2a',
+            fontFamily: 'Segoe UI, Arial, sans-serif',
+            letterSpacing: '1px',
+          },
+        }}
+      />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/editor" element={<Editor />} />
+        <Route path="/editor" element={<EditorPage />} />
       </Routes>
     </BrowserRouter>
   );
