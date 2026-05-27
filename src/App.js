@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate, useSearchParams } from 'react-router-dom';
 import './App.css';
 import Editor from './Editor';
 
@@ -7,6 +7,14 @@ function Landing() {
   const [roomId, setRoomId] = useState('');
   const [name, setName] = useState('');
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+useEffect(() => {
+  const roomFromUrl = searchParams.get('room');
+  if (roomFromUrl) {
+    setRoomId(roomFromUrl);
+  }
+}, [searchParams]);
 
   function createRoom() {
     const newRoomId = Math.random().toString(36).substring(2, 8).toUpperCase();
