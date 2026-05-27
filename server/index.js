@@ -32,4 +32,30 @@ io.on('connection', (socket) => {
     roomMembers[roomId].push({ id: socket.id, name });
 
     if (roomCode[roomId]) {
-      socket.emit(
+      socket.emit('code-update', roomCode[roomId]);
+    }
+
+    io.to(roomId).emit('members-update', roomMembers[roomId]);
+    console.log(`${name} joined room ${roomId}`);
+  });
+
+  socket.on('code-change', ({ roomId, code }) => {
+    roomCode[roomId] = code;
+    socket.to(roomId).emit('code-update', code);
+  });
+
+  socket.on('disconnect', () => {
+    const { roomId, name } = socket;
+    if (roomId && roomMembers[roomId]) {
+      roomMembers[roomId] = roomMembers[roomId].filter(
+        (m) => m.id !== socket.id
+      );
+      io.to(roomId).emit('members-update', roomMembers[roomId]);
+      console.log(`${name} left room ${roomId}`);
+    }
+  });
+});
+
+server.listen(5001, () => {
+  console.log('Server running on port 5001');
+});
