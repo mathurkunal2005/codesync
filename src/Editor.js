@@ -38,13 +38,14 @@ function EditorPage() {
       setCode(newCode);
     });
 
-    socket.on('members-update', (updatedMembers) => {
-      setMembers(updatedMembers);
+    socket.on('output-update', (newOutput) => {
+    setOutput(newOutput);
     });
 
     return () => {
       socket.off('code-update');
       socket.off('members-update');
+      socket.off('output-update');
       socket.disconnect();
     };
   }, [roomId, name]);
@@ -95,7 +96,9 @@ function EditorPage() {
     });
 
     const result = await response.json();
-    setOutput(result.stdout || result.stderr || result.compile_output || 'No output');
+    const finalOutput = result.stdout || result.stderr || result.compile_output || 'No output';
+    setOutput(finalOutput);
+    socket.emit('output-update', { roomId, output: finalOutput });
   } catch (error) {
     setOutput('Error running code. Try again.');
   }

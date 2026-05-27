@@ -40,10 +40,15 @@ io.on('connection', (socket) => {
     console.log(`${name} joined room ${roomId}`);
   });
 
-  socket.on('code-change', ({ roomId, code }) => {
+socket.on('code-change', ({ roomId, code }) => {
     roomCode[roomId] = code;
     socket.to(roomId).emit('code-update', code);
   });
+
+  socket.on('output-update', ({ roomId, output }) => {
+    socket.to(roomId).emit('output-update', output);
+  });
+
 
   socket.on('disconnect', () => {
     const { roomId, name } = socket;
